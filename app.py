@@ -17,6 +17,7 @@ def timeline():
 
 @app.route('/register')
 def register():
+    v=7;
     return render_template('register.html')
 
 if __name__ == '__main__':
