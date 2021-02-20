@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Home | Eng@ge!</title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='bs/css/united.min.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+	</head>
+	<body>
+
+		<div class="container-fluid">
+			<div class="row" id="banner">
+				<div class="title col-lg-12">
+					<p class="title">
+						<a href="./">ENG@GE!</a>
+					</p>
+					<p class="subtitle">...the awesome social platform</p>
+				</div>
+			</div>
+		</div>
+
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="./">Eng@ge!</a>
+				</div>
+		
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li class=""><a href="{{url_for('register')}}">Sign Up</a></li>
+						<li class=""><a href="#login" data-toggle="modal" data-keyboard="false">Login</a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div>
+		</nav>
+
+		<div class="container">
+
+			<div class="modal fade" id="login">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">Log in to Eng@ge!</h4>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-lg-6 col-lg-offset-3">
+									<div class="text-center">
+										<h3>
+											<a href="./">ENG@GE!</a>
+										</h3>
+									</div>
+									<div class="form-group">
+										<input type="text" name="username" id="username" class="form-control" placeholder="Username" />
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="password" class="form-control" placeholder="Password" />
+									</div>
+									<div class="form-group">
+										<div class="checkbox-inline">
+											<label>
+												<input type="checkbox" value="1" checked="checked">
+												Remember Me
+											</label>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<button type="button" class="btn btn-danger btn-block">Login</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<footer>
+				<div class="row pad">
+					<div class="col-lg-12 text-center">
+						Copyright &copy; 2017 <strong> <a href="./">Eng@ge!</a></strong>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<!-- jQuery -->
+		<script src="{{ url_for('static', filename='bs/js/jquery.min.js') }}"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="{{ url_for('static', filename='bs/js/bootstrap.min.js') }}"></script>
+	</body>
+</html>
