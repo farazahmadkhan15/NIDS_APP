@@ -1,0 +1,404 @@
+﻿body {
+    @include transition(all .5s);
+    background-color: #f4f7f6;    
+    font-family: 'Poppins', Arial, Tahoma, sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+}
+
+button,
+input,
+select,
+a {
+    outline: none !important;    
+}
+a:hover{text-decoration: none;}
+.no-animate {
+    -o-transition-property: none !important;
+    -moz-transition-property: none !important;
+    -ms-transition-property: none !important;
+    -webkit-transition-property: none !important;
+    transition-property: none !important;
+    -o-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -webkit-transform: none !important;
+    transform: none !important;
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    -o-animation: none !important;
+    -ms-animation: none !important;
+    animation: none !important;
+}
+
+section {
+    &.content {
+        @include transition(.5s);
+        border-radius: $border-radius-large;
+        margin: 116px 0 0 0;        
+        z-index: 9;
+        position: relative;        
+
+        &::before{
+            background: #191f28;
+            top: -120px;
+            left: 0;
+            content: '';
+            height: 180px;
+            width: 100%;
+            position: absolute;
+        }
+    }
+    small{
+        font-size: 90%;
+    }
+}
+
+.l-green { background: linear-gradient(45deg, #9ce89d, #cdfa7e) !important;}
+.l-pink {background: linear-gradient(45deg, #ffc0cb, #fbc1cb) !important;}
+.l-turquoise {background: linear-gradient(45deg, #00ced1, #08e5e8) !important;color: $white !important;}
+.l-cyan {background: linear-gradient(45deg, #49cdd0, #00bcd4) !important;color: $white !important;}
+.l-khaki {background: linear-gradient(45deg, #f0e68c, #fdf181) !important;}
+.l-coral {background: linear-gradient(45deg, #f08080, #f58787) !important;color: $white !important;}
+.l-salmon {background: linear-gradient(45deg, #ec74a1, #fbc7c0) !important;color: $white !important;}
+.l-blue {background: linear-gradient(45deg, #72c2ff, #86f0ff) !important;color: $white !important;}
+.l-seagreen {background: linear-gradient(45deg, #8ed8ec, #85f7b5) !important;color: $white !important;}
+.l-amber {background: linear-gradient(45deg, #fda582, #f7cf68) !important;color: $white !important;}
+.l-blush {background: linear-gradient(45deg, #dd5e89, #f7bb97) !important;color: $white !important;}
+.l-parpl {background: linear-gradient(45deg, #a890d3, #edbae7) !important;color: $white !important;}
+.l-slategray {background: linear-gradient(45deg, #708090, #7c8ea0) !important;color: $white !important;}
+
+.xl-pink{background: #f9edee !important;}
+.xl-turquoise{background: #bdf3f5 !important;}
+.xl-khaki{background: #f9f1d8 !important;}
+.xl-parpl{background: #efebf4 !important;}
+.xl-salmon{background: #ffd4c3 !important;}
+.xl-blue{background: #e0eff5 !important;}
+.xl-seagreen{background: #ebf2e8 !important;}
+.xl-slategray{background: #eceeef !important;}
+.col-white{ color: $white;}
+
+.btn-white { background-color: $white; color: $black; }
+.bg-black{ background-color: $black; color: $white; }
+.inlineblock {display: inline-block;}
+.displayblock {display: block;}
+.displaynone {display: none; }
+.overflowhidden{overflow: hidden;}
+
+.z-index{ z-index: 9999;}
+
+.table {
+    tbody {
+        tr,
+        th {
+            td {
+                vertical-align: middle;
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+.modal-open{
+    padding-right: 0 !important;
+    .modal{
+        padding-right: 0 !important;
+    }
+}
+
+.sub_menu{
+    display: none;
+    position: absolute;
+    background: $white;
+    z-index: 99;
+    transition: .5s;
+
+    &.show{
+        @extend .displayblock;
+    }
+
+    .btn{
+        font-size: 14px;
+        i{
+            @extend .m-r-5;
+            margin-top: -3px;
+            vertical-align: middle;
+        }
+    }
+}
+
+#bdatetimepicker{ border-top-right-radius:30px;  border-bottom-right-radius: 30px; }
+.input-group-focus{
+    .bootstrap-datetimepicker-widget{ display: block;}
+    .collapse.in{display: block;}
+    .collapse.in {
+        .datepicker{visibility: visible; opacity: 1; transform: unset;}
+    }
+    .bootstrap-datetimepicker-widget{
+        .timepicker {
+            .separator{ background-color: transparent;}
+            .btn{ background-color: transparent; line-height: normal; border: 0; color: inherit; padding: 0; margin: 0;}
+        }
+    }    
+}
+.theme-dark{
+    background-color: $dark-bg;
+    hr{
+        border-color: rgba($white, 0.1);
+    }
+    .top_navbar{
+        border-color: $white;
+    }
+    .table td,
+    .table th,
+    .to-do-list ul li{
+        border-color: rgba($white, 0.1);
+    }
+    .weather2 .table tbody tr td{
+        color: $grey-400;
+    }
+    section.content{
+        &:before{
+            background-color: $dark-bg;
+        }
+    }
+    .navbar-nav{
+        .search_bar .form-control{
+            border-color: $white; 
+        }
+        >li{
+            >a{
+                color: $white;
+            }
+        }
+    }
+    .card{
+        background: $card-bg;
+        .header{
+            h2{
+                color: $grey-500;    
+            }
+        }
+        .card-inside-title{
+            color: $grey-400;
+        }
+        .body{
+            color: $grey-400;
+        }
+    }
+    .sidebar.h_menu{
+        .menu{
+            li>a{
+                color: $grey-700;
+            }
+        }
+    }
+    .right-sidebar{
+        .card{
+            background: $white !important;
+        }
+    }
+    .chat-widget li .message{
+        border: 1px solid rgba($white, 0.1);
+    }
+    .follow_us .media .name{
+        color: $grey-300;
+    }
+    .weather2 .city-selected{
+        color: $dark-bg !important;
+    }
+    .donut_chart{
+        svg{
+            stroke: #424852 !important;
+        }        
+    }
+    .btn-neutral{
+        background: transparent;
+    }
+    .input-group-addon{
+        background: transparent;
+        border-color: #3b3f46; 
+    }
+    .input-group-focus{
+        .input-group-addon{
+            background: transparent;
+        }
+    }
+    .form-control{
+        border-color: #3b3f46;
+    }
+    .pagination {
+        .page-item .page-link{
+            color: $grey-500;
+        }
+    }
+    .panel-group .panel-primary .panel-title{
+        background-color: #3b3f46;
+        border-color: $grey-700;
+    }
+    .media .media-body .media-heading{
+        color: $grey-500;
+    }
+    .list-group-item,
+    .progress,
+    .dropzone{
+        background-color: #3b3f46 !important;
+    }
+    .nav-tabs>.nav-item>.nav-link{
+        border-color: $grey-700;
+    }
+    .btn.btn-simple,
+    .navbar .navbar-nav>a.btn.btn-simple,
+    .fc .fc-view-container .fc-view.fc-basic-view>table tbody tr td.fc-widget-content, .fc .fc-view-container .fc-view.fc-agenda>table tbody tr td.fc-widget-content,
+    .fc .fc-view-container .fc-view.fc-basic-view .fc-body .fc-row .fc-bg, .fc .fc-view-container .fc-view.fc-agenda .fc-body .fc-row .fc-bg,
+    .fc .fc-view-container .fc-view.fc-basic-view>table tbody tr td:first-child.fc-widget-content, .fc .fc-view-container .fc-view.fc-agenda>table tbody tr td:first-child.fc-widget-content{
+        border-color: #3b3f46;
+    }
+    .chat{
+        border-color: $grey-800 !important;
+        .chat-header{
+            border-color: $grey-800;
+            .chat-about{
+                color: $white;
+            }
+        }
+        .chat-history{
+            border-color: $grey-800;
+            .message-data-time{
+                color: $grey-600;
+            }
+        }
+    }
+    .blog-page{
+        .single_post{
+            h3 a{
+                color: $grey-400;
+            }
+        }
+        .right-box{
+            .categories-clouds li a{
+                color: $grey-400;
+            }
+        }
+    }
+    .sub_menu{
+        background: $card-bg;
+    }
+    .table-bordered{
+        border-color: $grey-700;
+    }
+    .c_review{
+        li{
+            border-color: $grey-700;
+        }
+    }
+    .inbox{
+        .mail_list{
+            background: transparent;
+            .list-group-item{
+                margin-bottom: 1px;
+                .media-heading{
+                    a{
+                        color: $grey-400;
+                    }                    
+                }
+                .msg{
+                    color: $grey-500;
+                }
+                &.unread{
+                    border-color: $grey-100;
+                    background-color: rgba($white, 0.25) !important;
+                }
+            }            
+        }
+    }
+    .pricing li+li{
+        border-color: $grey-800;
+    }
+    pre,
+    .product_item .product_details h5 a,
+    .cd-horizontal-timeline a,
+    .activity li a .info h4{
+        color: $grey-400;
+    }
+
+    .inbox-widget{
+        .inbox-inner{
+            border-color: $grey-800;
+
+            .inbox-item-info{
+                .author{
+                    color: $grey-300;
+                }
+                .inbox-message{
+                    color: $grey-500;
+                }
+            }
+            .hover_action .btn{
+                background: $white;
+            }
+        }
+    }
+    .profile_state li{
+        border-color: $grey-800;
+    }
+    .location_list{
+        .body{
+            color: $dark-bg;
+        }
+    }
+    .note-editor.note-frame{
+        border-color: $grey-800;
+    }
+    .note-editor.note-frame .note-editing-area .note-editable{
+        background: transparent;
+        color: $white;
+    }
+    .wizard > .steps .disabled a, .wizard > .steps .disabled a:hover, .wizard > .steps .disabled a:active,
+    .wizard>.content{
+        background: rgba($white, 0.1);
+    }
+}
+
+@media screen and (max-width: 1920px) and (min-width: 1600px) {
+    .container{
+        max-width: 1500px;
+    }
+}
+@media screen and (max-width: 1600px) and (min-width: 1359px) {
+    .container{
+        max-width: 1300px;
+    }
+}
+@media only screen and (max-width: 1359px) {
+    .sidebar{
+        &.h_menu .menu{
+            li{
+                a{
+                    font-size: 15px;
+                    i{
+                        display: none;
+                    }
+                    span{
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1080px) {
+    .hidden-md{
+        display: none;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .hidden-sm{
+        display: none !important;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .hidden-xs{
+        display: none !important;
+    }
+}
