@@ -13,6 +13,7 @@
 <!-- Custom Css -->
 <link rel="stylesheet" href="{{url_for('static',filename='assets/css/main.css')}}">
 <link rel="stylesheet" href="{{url_for('static',filename='assets/css/color_skins.css')}}">
+<link href="{{url_for('static',filename='ExAsset/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
 </head>
 <body class="theme-purple">
 <!-- Page Loader -->
@@ -26,37 +27,43 @@
 <!-- Overlay For Sidebars -->
 <div class="overlay"></div>
 
+
 {% block nav %}
-    <!-- Top Bar -->
+<!-- Top Bar -->
 <nav class="top_navbar">
-    <div class="container">
-        <div class="row clearfix">
-            <div class="col-12">
-                <div class="navbar-logo">
-                    <a href="javascript:void(0);" class="bars"></a>
-                     <a class="navbar-brand" href="index.html"><span class="m-l-10">Network Intrusion Detection System</span></a>
-                </div>  
-            </div>
-        </div>        
-    </div>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-12">
+            <div class="navbar-logo">
+                <a href="javascript:void(0);" class="bars"></a>
+                 <a class="navbar-brand" href="index.html"><span class="m-l-10">Network Intrusion Detection System</span></a>
+            </div>  
+        </div>
+    </div>        
+</div>
 </nav>
 
 <aside id="leftsidebar" class="sidebar h_menu">
-    <div class="container">
-        <div class="row clearfix">
-            <div class="col-12">
-                <div class="menu">
-                    <ul class="list">
-                        <li class="header">MAIN</li>
-                        <li class="{% block active_dashboard %}{% endblock %}"><a href="./newsFeeds.html" class="menu-toggle"><span>DashBoard</span></a>
-                        <li class="{% block active %}{% endblock %}" ><a href="./newsFeeds.html" class="menu-toggle"><span>Logs</span></a>                              
-                    </ul>
-                </div>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-12">
+            <div class="menu">
+                <ul class="list">
+                    {% if url_for(request.endpoint) != '/' %}
+                    <li class="header">MAIN</li>
+                    <li class="{% block active_dashboard %}{% endblock %}"><a href="./newsFeeds.html" class="menu-toggle"><span>DashBoard</span></a>
+                    <li class="{% block active %}{% endblock %}" ><a href="./newsFeeds.html" class="menu-toggle"><span>Logs</span></a>    
+                                      
+                       {% endif %}                           
+                </ul>
             </div>
         </div>
     </div>
+</div>
 </aside>
 {% endblock nav %}
+
+
 
 
 <!-- Main Content -->
@@ -67,9 +74,12 @@
 
 <!-- Jquery Core Js --> 
 
+
+
 <script src="{{ url_for('static', filename='assets/bundles/libscripts.bundle.js') }}"></script> <!-- Lib Scripts Plugin Js --> 
 <script src="{{ url_for('static', filename='assets/bundles/vendorscripts.bundle.js') }}"></script> <!-- Lib Scripts Plugin Js --> 
 
 <script src="{{ url_for('static', filename='assets/bundles/mainscripts.bundle.js') }}"></script>
+
 </body>
 </html>

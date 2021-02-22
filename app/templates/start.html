@@ -13,8 +13,17 @@
                     <div class="body block-header">
                         <div class="row">
                             <div class="col-lg-6 col-md-8 col-sm-12">
-                                <h2>Select Network Interface</h2>
-                            </div> 
+                                <h2>Started NIDS on <strong>{{ interface }}</strong></h2>                           
+                            </div>            
+                            <div class="col-lg-6 col-md-4 col-sm-12 text-right">
+                                <div class="inlineblock text-center m-r-15 m-l-15 hidden-sm">
+                                    Address: <strong>{{ addrs['addr'] }}</strong> <br>
+                                    Netmask: <strong>{{ addrs['netmask'] }}</strong> <br>
+                                    Broadcast: <strong>{{ addrs['broadcast'] }}</strong> <br>
+                                </div>
+                          
+                                <button class="btn btn-primary btn-round btn-simple float-right hidden-xs m-l-10">Select New Interface</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -28,19 +37,7 @@
                     </div>
                     <div class="body">
                         
-                        <form action="{{url_for('start')}}" method="post">
-
-                            <div class="row clearfix">
-                                <div class="col-sm-6 d-flex justify-content-center">
-                                    {{form.interface(class="form-control show-tick", id="ifinfo")}}
-                                    <button type = "submit" class="btn btn-primary btn-round btn-lg m-l-35"> <strong>Start</strong></button>
-                                 </div>
-                             </div>   
-
-                            
-
-                            </form>
-                       
+                   
                     
                      
            
