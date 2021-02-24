@@ -83,5 +83,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" 
 integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
 
+    <script>
+        function update_values() {
+            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+            $.getJSON($SCRIPT_ROOT+"/flows",
+                function(data) {
+                    if (typeof data['timestamp'] !== 'undefined')
+                    $("#flows").append(`<li>${data['timestamp']}==>${data['src_ip']}==>
+                        ${data['dst_ip']}==>${data['result']}
+                    </li>`);
+                    });
+                    
+                
+        }
+
+        setInterval(function(){ 
+            update_values();//code goes here that will be run every 5 seconds.    
+        }, 5000);
+    </script>
 </body>
 </html>

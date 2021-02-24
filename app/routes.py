@@ -1,5 +1,5 @@
 from flask import render_template,flash,redirect,url_for,request
-from flask import request,json,jsonify
+from flask import request,json,jsonify, Response
 import netifaces
 import json
 import os
@@ -8,16 +8,15 @@ import sys
 import numpy as np
 import pandas as pd 
 import pickle
-
+import os
 from app.forms import If_form
-from app import app, socketio
-
+from app import app
 flows = []
 resp = {}
 pid = ''
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 
- 
 
 
 
@@ -41,14 +40,24 @@ def start():
        
        pid = subprocess.Popen(["cicflowmeter","-i",
                                form.interface.data,"-c",
-                               "/home/farazahmadkhan/ci33c.csv",
+                              os.path.join(basedir, 'flows.csv') ,
                                "-u",
                                request.url_root+"/predict/"]) # Call subprocess
          
        
        return redirect(url_for('home'))
 
+@app.route('/flows', methods= ['GET'])
+def flows():
+    global resp
 
+    print(resp)
+    
+    return jsonify (resp)
+ 
+
+    
+    
 @app.route('/newInterface')
 def newInterface():
     print(pid)
@@ -56,7 +65,7 @@ def newInterface():
     return redirect(url_for('index'))
 
 # De-Serializing Model
-model = pickle.load(open("/home/farazahmadkhan/Documents/NIDS_APP/app/nids_model_rf.pkl","rb"))
+model = pickle.load(open(os.path.join(basedir, 'nids_model_rf.pkl'),"rb"))
 
 @app.route('/predict/', methods=['POST'])
 def predict():
@@ -84,14 +93,13 @@ def predict():
               'result': pred[0] }
    
     
-    flows.append(resp)
+    # flows.append(resp)
     return redirect(url_for('home'))
 
-       
+
+
 @app.route('/home')
 def home():
     global flows
-    if not flows:
-        redirect(url_for('home'))   
-        print(flows)
+
     return render_template('home.html',flows = flows)
