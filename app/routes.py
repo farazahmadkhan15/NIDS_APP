@@ -1,9 +1,20 @@
 from flask import render_template,flash,redirect,url_for,request
-from flask import request
+from flask import request,json,jsonify
 import netifaces
 import json
+import os
+import subprocess
+import sys
+import numpy as np
+import pandas as pd 
+import pickle
+
 from app.forms import If_form
-from app import app
+from app import app, socketio
+
+flows = []
+resp = {}
+pid = ''
 
 
  
@@ -14,6 +25,7 @@ from app import app
 def index():
        interface = netifaces.interfaces()
        form = If_form();
+       print(request.url)
        interface.insert(0,"-- Please Select Interface --")
        form.interface.choices = interface
        form.interface.default = interface[0]
@@ -21,19 +33,65 @@ def index():
        
 
 
+
 @app.route('/start',methods=['POST','GET'])           # decorators that modifies function follows
 def start():
        form = If_form();
-       addrs = netifaces.ifaddresses(form.interface.data)
-       addrs = addrs[netifaces.AF_INET]
-       addrs = addrs[0]
-       print(addrs)
+       global pid
+       
+       pid = subprocess.Popen(["cicflowmeter","-i",
+                               form.interface.data,"-c",
+                               "/home/farazahmadkhan/ci33c.csv",
+                               "-u",
+                               request.url_root+"/predict/"]) # Call subprocess
+         
+       
+       return redirect(url_for('home'))
 
 
-       if form.validate_on_submit() and  form.interface.data !=  "-- Please Select Interface --":
-             return "<h1> Submit {}  </h1>".format(form.interface.data) 
-              
-       return render_template("start.html",interface=form.interface.data,addrs = addrs)
+@app.route('/newInterface')
+def newInterface():
+    print(pid)
+    pid.kill()
+    return redirect(url_for('index'))
+
+# De-Serializing Model
+model = pickle.load(open("/home/farazahmadkhan/Documents/NIDS_APP/app/nids_model_rf.pkl","rb"))
+
+@app.route('/predict/', methods=['POST'])
+def predict():
+    global flows
+    global resp
+    req = request.get_json()
+    df1 = pd.DataFrame(data=req["data"], columns=req["columns"] )
+    df2 = df1.copy()
+   
+    # droping unwanted columns
+    col =['src_ip','dst_ip','src_port','dst_port','protocol','timestamp']
+    df1.drop(col, inplace=True, axis=1)
+    df1.reset_index(drop=True, inplace=True)
+    # Making Pridiction
+    pred = model.predict(df1)
+
+    
+
+    
+    
+    # returning result as JSON
+    resp = {'src_ip':df2['src_ip'].values[0],
+              'dst_ip':df2['dst_ip'].values[0],
+              'timestamp':df2['timestamp'].values[0],
+              'result': pred[0] }
+   
+    
+    flows.append(resp)
+    return redirect(url_for('home'))
 
        
-       
+@app.route('/home')
+def home():
+    global flows
+    if not flows:
+        redirect(url_for('home'))   
+        print(flows)
+    return render_template('home.html',flows = flows)

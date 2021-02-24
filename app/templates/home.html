@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block active_dashboard %}
+    open active
+{% endblock active_dashboard %}
+
+{% block content %}
+<section class="content">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="body block-header">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-8 col-sm-12">
+                                <h2>Started NIDS on <strong></strong></h2>                           
+                            </div>            
+                            <div class="col-lg-6 col-md-4 col-sm-12 text-right">                       
+                          
+                                <button class="btn btn-primary btn-round btn-simple float-right hidden-xs m-l-10" onclick="window.location.href='{{url_for('newInterface')}}';">Select New Interface</button>
+                            </div>
+                        </ddiv>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="header">
+                        
+                    </div>
+                    <div class="body">
+                        
+                        {% for flows in flows %}
+                            {{flows}}
+                     {% endfor %}
+                    
+                     
+           
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
