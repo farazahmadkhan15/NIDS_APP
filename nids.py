@@ -1,5 +1,4 @@
-from app import app, dbpip
-
+from app import app, db
 
 
 
