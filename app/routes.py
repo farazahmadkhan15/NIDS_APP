@@ -1,5 +1,10 @@
-from flask import render_template,flash,redirect,url_for,request
+from flask import render_template,flash,redirect,url_for,request, session,  Response
 from flask import request,json,jsonify, Response
+
+
+from flask_socketio import emit
+from flask_sse import sse
+
 import netifaces
 import json
 import os
@@ -10,10 +15,11 @@ import pandas as pd
 import pickle
 import os
 from app.forms import If_form
-from app import app
+from app import app, socketio
 flows = []
 resp = {}
 pid = ''
+interface = ''
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -44,17 +50,15 @@ def start():
                                "-u",
                                request.url_root+"/predict/"]) # Call subprocess
          
-       
+       session['interface'] = form.interface.data
        return redirect(url_for('home'))
 
 @app.route('/flows', methods= ['GET'])
 def flows():
     global resp
 
-    print(resp)
-    
-    return jsonify (resp)
- 
+
+    return jsonify (resp) 
 
     
     
@@ -84,7 +88,9 @@ def predict():
 
     
 
-    
+    df2['label'] = pred[0]
+    result = df2.to_json(orient="records")
+    print(result)
     
     # returning result as JSON
     resp = {'src_ip':df2['src_ip'].values[0],
@@ -93,13 +99,23 @@ def predict():
               'result': pred[0] }
    
     
+    msg = json.dumps(resp)
+    
+    # sendData(msg)
+    sse.publish(result, type='greeting')
+    
+    # handleMessage(msg)
     # flows.append(resp)
-    return redirect(url_for('home'))
+    return Response(status=201)
 
 
+# @socketio.on('my event', namespace='/hello')
+# def hello():
+#     emit('my response', {'data': 'got it!'})
+#     return "11"
+
+	
 
 @app.route('/home')
-def home():
-    global flows
-
-    return render_template('home.html',flows = flows)
+def home():    
+    return render_template('home.html')

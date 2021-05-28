@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block active_dashboard %}
-    open active
+open active
 {% endblock active_dashboard %}
 
 {% block content %}
@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-8 col-sm-12">
                                 <h2>Select Network Interface</h2>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -24,30 +24,31 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="header">
-                        
+
                     </div>
                     <div class="body">
-                        
+
                         <form action="{{url_for('start')}}" method="post">
 
                             <div class="row clearfix">
                                 <div class="col-sm-6 d-flex justify-content-center">
                                     {{form.interface(class="form-control show-tick", id="ifinfo")}}
-                                    <button type = "submit" class="btn btn-primary btn-round btn-lg m-l-35"> <strong>Start</strong></button>
-                                 </div>
-                             </div>   
+                                    <button type="submit" class="btn btn-primary btn-round btn-lg m-l-35">
+                                        <strong>Start</strong></button>
+                                </div>
+                            </div>
 
-                            
 
-                            </form>
-                       
-                    
-                     
-           
+
+                        </form>
+
+
+
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 {% endblock content %}
