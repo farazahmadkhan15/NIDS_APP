@@ -73,4 +73,70 @@ function initCharts() {
         spotColor: '#e0b89d',
         spotRadius: 0
     });
+
+    $('#linecustom4').sparkline('html',{
+        height: '55px',
+        width: '100%',
+        lineColor: '#a095e5',
+        fillColor: '#a095e5',
+        minSpotColor: true,
+        maxSpotColor: true,
+        spotColor: '#e2a8df',
+        spotRadius: 0
+    });
+
+    $('#linecustom6').sparkline('html',{
+        height: '55px',
+        width: '100%',
+        lineColor: '#75c3f2',
+        fillColor: '#75c3f2',
+        minSpotColor: true,
+        maxSpotColor: true,
+        spotColor: '#8dbfe0',
+        spotRadius: 0
+    });
+
+    $('#linecustom5').sparkline('html',{	
+        height: '55px',
+        width: '100%',
+        lineColor: '#fc7b92',
+        fillColor: '#fc7b92',
+        minSpotColor: true,
+        maxSpotColor: true,
+        spotColor: '#e0b89d',
+        spotRadius: 0
+    });
+
+    $('#linecustom8').sparkline('html',{
+        height: '55px',
+        width: '100%',
+        lineColor: '#a095e5',
+        fillColor: '#a095e5',
+        minSpotColor: true,
+        maxSpotColor: true,
+        spotColor: '#e2a8df',
+        spotRadius: 0
+    });
+
+    $('#linecustom9').sparkline('html',{
+        height: '55px',
+        width: '100%',
+        lineColor: '#75c3f2',
+        fillColor: '#75c3f2',
+        minSpotColor: true,
+        maxSpotColor: true,
+        spotColor: '#8dbfe0',
+        spotRadius: 0
+    });
+
+    $('#linecustom7').sparkline('html',{	
+        height: '55px',
+        width: '100%',
+        lineColor: '#fc7b92',
+        fillColor: '#fc7b92',
+        minSpotColor: true,
+        maxSpotColor: true,
+        spotColor: '#e0b89d',
+        spotRadius: 0
+    });
 }

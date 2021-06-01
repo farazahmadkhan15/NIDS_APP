@@ -13,6 +13,9 @@
 <!-- Custom Css -->
 <link rel="stylesheet" href="{{url_for('static',filename='assets/css/main.css')}}">
 <link rel="stylesheet" href="{{url_for('static',filename='assets/css/color_skins.css')}}">
+
+<link rel="stylesheet" href="{{url_for('static',filename='ExAsset/plugins/jquery-datatable/dataTables.bootstrap4.min.css')}}">
+
 <link href="{{url_for('static',filename='ExAsset/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -46,29 +49,10 @@
 </div>
 </nav>
 
-<aside id="leftsidebar" class="sidebar h_menu">
-<div class="container">
-    <div class="row clearfix">
-        <div class="col-12">
-            <div class="menu">
-                <ul class="list">
-                    {% if url_for(request.endpoint) != '/' %}
-                    <li class="header">MAIN</li>
-                    <li class="{% block active_dashboard %}{% endblock %}"><a href="./newsFeeds.html" class="menu-toggle"><span>DashBoard</span></a>
-                    <li class="{% block active %}{% endblock %}" ><a href="./newsFeeds.html" class="menu-toggle"><span>Logs</span></a>    
-                                      
-                       {% endif %}                           
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-</aside>
+
 {% endblock nav %}
 
-<ul id="messages"></ul>
-<input type="text" id="myMessage">
-<button id="sendbutton">Send</button>
+
 
 
 <!-- Main Content -->
@@ -85,14 +69,66 @@
 <script src="{{ url_for('static', filename='assets/bundles/vendorscripts.bundle.js') }}"></script> <!-- Lib Scripts Plugin Js --> 
 
 <script src="{{ url_for('static', filename='assets/bundles/mainscripts.bundle.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/bundles/datatablescripts.bundle.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/pages/tables/jquery-datatable.js') }}"></script>
+
+<script src="{{ url_for('static', filename='assets/js/pages/widgets/infobox/infobox-1.js') }}"></script>
+
 
 <script type="text/javascript">
     var source = new EventSource("{{ url_for('sse.stream') }}");
+    var flow = 0;
+    var benign = 0
+    var attack = 0
     source.addEventListener('greeting', function(event) {
         var data = JSON.parse(event.data);
         console.log(data)
+
+        var table = $('#flowTable').DataTable();
+        flow++
+        if (data[0].label == "Benign"){
+            benign++;
+        }else{
+            attack++;
+        }
+
+
+        document.getElementById('flow').innerHTML = flow
+        document.getElementById('benign').innerHTML = benign
+        document.getElementById('attack').innerHTML = attack
+        
+       var rowNode = table
+           .row.add( [ data[0].timestamp, 
+           `<a href="#largeModal" data-toggle="modal" data-target="#largeModal" onClick = "ipInfo(this.innerHTML);">${data[0].src_ip}<a>`, 
+            data[0].src_port,
+          `<a href="#largeModal" data-toggle="modal" data-target="#largeModal" onClick = "ipInfo(this.innerHTML);">${data[0].dst_ip}<a>`, 
+           
+           data[0].dst_port,
+            data[0].protocol,
+            data[0].label
+            ] )
+            .draw(false )
+            .node();
+       
     }, false);
 
+
+
+    function ipInfo(ip){
+      //  const url = 'http://localhost:8000/ip?ip='+ip 
+        console.log(ip)
+        document.getElementById('ip').innerHTML = ""
+    
+        fetch('/ip?ip='+ip)
+        .then(function (response) {
+            return response.json();
+        }).then(function (text) {      
+         
+            document.getElementById('ip').innerHTML = text.whois
+ 
+        });
+
+    }
 
     </script>
 

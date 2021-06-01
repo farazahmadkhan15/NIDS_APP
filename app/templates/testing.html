@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block active_dashboard %}
+    open active
+{% endblock active_dashboard %}
+
+{% block content %}
+
+<section class="content">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="body block-header">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-8 col-sm-12">
+                                <h2>Model Testing on Test Set  </h2>                          
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Basic Examples -->
+        
+
+
+        <div class="row clearfix">
+            <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                <div class="card overflowhidden">
+                    <div class="body">
+                        <h2 class="number count-to m-t-0 m-b-5" data-from="0" data-to="{{result.accuracy}}" data-speed="1000" data-fresh-interval="700">{{ result.accuracy }}</h2>
+                        <p class="text-muted">Accuracy</p>                        
+                    </div>
+                    <span id="linecustom1">1,4,2,6,5,2,3,8,5,2</span>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                <div class="card overflowhidden">
+                    <div class="body">
+                        <h2 class="number count-to m-t-0 m-b-5" data-from="0" data-to="{{result.total}}" data-speed="2000" data-fresh-interval="700">{{ result.total }}</h2>
+                        <p class="text-muted ">Total flows</p>                        
+                    </div>
+                    <span id="linecustom2">2,9,5,5,8,5,4,2,6</span>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                <div class="card overflowhidden">
+                    <div class="body">
+                        <h2 class="number count-to m-t-0 m-b-5" data-from="0" data-to="{{result.benign}}" data-speed="2000" data-fresh-interval="700">{{result.benign}}</h2>
+                        <p class="text-muted">Benign</p>                        
+                    </div>
+                    <span id="linecustom3">1,5,3,6,6,3,6,8,4,2</span>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                <div class="card overflowhidden">
+                    <div class="body">
+                        <h2 class="number count-to m-t-0 m-b-5" data-from="0" data-to="{{result.bot}}" data-speed="2000" data-fresh-interval="700">{{result.bot}}</h2>
+                        <p class="text-muted">Bot</p>                        
+                    </div>
+                    <span id="linecustom5" >1,5,3,6,6,3,6,8,4,2</span>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                <div class="card overflowhidden">
+                    <div class="body">
+                        <h2 class="number count-to m-t-0 m-b-5" data-from="0" data-to="{{result.ddos}}" data-speed="2000" data-fresh-interval="700">{{result.ddos}}</h2>
+                        <p class="text-muted">DDoS</p>                        
+                    </div>
+                    <span id="linecustom4" >1,5,3,6,6,3,6,8,4,2</span>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                <div class="card overflowhidden">
+                    <div class="body">
+                        <h2 class="number count-to m-t-0 m-b-5" data-from="0" data-to="{{result.infliteration}}" data-speed="2000" data-fresh-interval="700">{{result.infliteration}}</h2>
+                        <p class="text-muted">Infliteration</p>                        
+                    </div>
+                    <span id="linecustom6" >1,5,3,6,6,3,6,8,4,2</span>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                <div class="card overflowhidden">
+                    <div class="body">
+                        <h2 class="number count-to m-t-0 m-b-5" data-from="0" data-to="{{result.bruteforce}}" data-speed="2000" data-fresh-interval="700">{{result.bruteforce}}</h2>
+                        <p class="text-muted">Brute Force</p>                        
+                    </div>
+                    <span id="linecustom9" >1,5,3,6,6,3,6,8,4,2</span>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                <div class="card overflowhidden">
+                    <div class="body">
+                        <h2 class="number count-to m-t-0 m-b-5" data-from="0" data-to="{{result.sqlInjection}}" data-speed="2000" data-fresh-interval="700">{{result.sqlInjection}}</h2>
+                        <p class="text-muted">SQL Injection</p>                        
+                    </div>
+                    <span id="linecustom7" >1,5,3,6,6,3,6,8,4,2</span>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                <div class="card overflowhidden">
+                    <div class="body">
+                        <h2 class="number count-to m-t-0 m-b-5" data-from="0" data-to="{{result.xss}}" data-speed="2000" data-fresh-interval="700">{{result.xss}}</h2>
+                        <p class="text-muted">XSS</p>                        
+                    </div>
+                    <span id="linecustom8" >1,5,3,6,6,3,6,8,4,2</span>
+                </div>
+            </div>
+
+        </div>
+
+        
+
+            
+           
+
+            
+
+
+            
+           
+        </div>        
+  
+        <!-- #END# Basic Examples --> 
+    </div>
+</section>
+
+
+
+{% endblock content %}
