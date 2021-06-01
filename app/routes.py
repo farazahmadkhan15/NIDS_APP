@@ -41,20 +41,16 @@ def index():
 
 def cicflowmeter(start,interface):
     global pid
-    if start:
-     
+    if start:     
         p = subprocess.Popen(["cicflowmeter","-i",
-                               interface,"-c",
-                              os.path.join(basedir, 'static/flows.csv') ,
-                               "-u",
-                               request.url_root+"/predict/"]) # Call subprocess
+                            interface,"-c",
+                            os.path.join(basedir, 'static/flows.csv') ,
+                            "-u",
+                            request.url_root+"predict/"]) # Call subprocess
         pid = p.pid
-       
-
-    elif not start:
-        print(pid)
+    elif not start:        
         os.kill(pid, signal.SIGSTOP)
-        print("stop")
+        
 
 
 
@@ -73,8 +69,7 @@ def ip():
     ip = request.args.get('ip')
     if request.method == 'GET':
         whois = subprocess.check_output([f'whois {ip}'],shell=True)
-        # traceroute = subprocess.check_output([f'traceroute  {ip}'],shell=True)
-        
+        # traceroute = subprocess.check_output([f'traceroute  {ip}'],shell=True)        
         message = {'whois': whois.decode("utf-8")}
         return jsonify(message)  # serialize and use JSON headers
 
@@ -110,8 +105,7 @@ def testing():
     y_test = pd.read_csv(os.path.join(basedir, 'smt_y_Test.csv'));
     df.drop('Unnamed: 0',
     axis='columns', inplace=True)
-    pred = model.predict(df)
-    
+    pred = model.predict(df)    
     # (unique, counts) = np.unique(pred, return_counts=True)
     accuracy = metrics.accuracy_score(y_test["0"].values.reshape(-1, 1),pred)
 
@@ -160,21 +154,20 @@ def predict():
     req = request.get_json()
     df1 = pd.DataFrame(data=req["data"], columns=req["columns"] )
     df2 = df1.copy()
-    cols = [' Bwd Packet Length Std', ' min_seg_size_forward', ' PSH Flag Count', ' Min Packet Length',
-             ' Init_Win_bytes_backward', ' ACK Flag Count', 'Total Length of Fwd Packets', ' Subflow Fwd Bytes',
-              'Init_Win_bytes_forward', ' Bwd Packet Length Min', ' Fwd IAT Std', ' Flow IAT Max', ' URG Flag Count',
-               ' Destination Port', ' Flow IAT Mean', ' Flow Duration', ' Bwd Packets/s', 'Fwd IAT Total', 'Bwd IAT Total', 
-               ' act_data_pkt_fwd', ' Down/Up Ratio', ' Idle Min', ' Fwd Packet Length Min', ' Bwd IAT Max', ' Fwd Packet Length Mean']
+    cols = [' Bwd Packet Length Std', ' min_seg_size_forward', ' PSH Flag Count',
+            ' Min Packet Length',' Init_Win_bytes_backward', ' ACK Flag Count', 
+            'Total Length of Fwd Packets', ' Subflow Fwd Bytes',
+            'Init_Win_bytes_forward', ' Bwd Packet Length Min', ' Fwd IAT Std',
+            ' Flow IAT Max', ' URG Flag Count',' Destination Port', ' Flow IAT Mean',
+            ' Flow Duration', ' Bwd Packets/s', 'Fwd IAT Total', 'Bwd IAT Total', 
+            ' act_data_pkt_fwd', ' Down/Up Ratio', ' Idle Min', ' Fwd Packet Length Min', 
+            ' Bwd IAT Max', ' Fwd Packet Length Mean']
     feature = df1[cols]
-
-
-   
 
     # Making Pridiction
     pred = model.predict(feature) 
-
-
     label = pred[0]
+
     if label == 0:
         df1['label'] = 'Benign'
     elif label == 1:
@@ -192,28 +185,17 @@ def predict():
     elif label == 7:
         df1['label'] = 'XSS'
 
-
     df1.rename(columns = {" Destination Port": "dst_port"}, 
-          inplace = True)
-    result = df1.to_json(orient="records")
-    
- 
-    
-    
-    
-    # sendData(msg)
+        inplace = True)
+
+    result = df1.to_json(orient="records")    
     sse.publish(result, type='greeting')
-    
-    # handleMessage(msg)
-    # flows.append(re
-  
-    return jsonify(label = df1['label'].values[0])
+    resp = {"label" :  df1['label'].values[0]}
+    print(resp)
+    return jsonify(resp)
 
 
-# @socketio.on('my event', namespace='/hello')
-# def hello():
-#     emit('my response', {'data': 'got it!'})
-#     return "11"
+
 
 	
 

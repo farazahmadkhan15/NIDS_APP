@@ -81,9 +81,7 @@
     var benign = 0
     var attack = 0
     source.addEventListener('greeting', function(event) {
-        var data = JSON.parse(event.data);
-        console.log(data)
-
+        var data = JSON.parse(event.data);        
         var table = $('#flowTable').DataTable();
         flow++
         if (data[0].label == "Benign"){
@@ -91,25 +89,23 @@
         }else{
             attack++;
         }
-
-
         document.getElementById('flow').innerHTML = flow
         document.getElementById('benign').innerHTML = benign
         document.getElementById('attack').innerHTML = attack
         
-       var rowNode = table
-           .row.add( [ data[0].timestamp, 
-           `<a href="#largeModal" data-toggle="modal" data-target="#largeModal" onClick = "ipInfo(this.innerHTML);">${data[0].src_ip}<a>`, 
+    var rowNode = table
+            .row.add( [ data[0].timestamp, 
+            `<a href="#largeModal" data-toggle="modal" data-target="#largeModal" 
+            onClick = "ipInfo(this.innerHTML);">${data[0].src_ip}<a>`, 
             data[0].src_port,
-          `<a href="#largeModal" data-toggle="modal" data-target="#largeModal" onClick = "ipInfo(this.innerHTML);">${data[0].dst_ip}<a>`, 
-           
-           data[0].dst_port,
+            `<a href="#largeModal" data-toggle="modal" data-target="#largeModal" 
+            onClick = "ipInfo(this.innerHTML);">${data[0].dst_ip}<a>`, 
+            data[0].dst_port,
             data[0].protocol,
             data[0].label
             ] )
             .draw(false )
-            .node();
-       
+            .node();       
     }, false);
 
 
