@@ -88,7 +88,7 @@ def stop():
 
 
 #De-Serializing Model
-model = pickle.load(open(os.path.join(basedir, 'nids_model_ADABoost.pkl'),"rb"))
+model = pickle.load(open(os.path.join(basedir, 'nids_model.pkl'),"rb"))
 
 @app.route('/testing')
 def testing():
