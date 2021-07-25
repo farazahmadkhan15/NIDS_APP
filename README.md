@@ -8,7 +8,7 @@ CICFLOWMETER has been modified according to our application. NIDS only support
 CICFLOWMETER installed from mentioned repository:
 ```sh
 git clone https://github.com/farazahmadkhan15/cicflowmeter-NIDS.git 
-cd cicflowmeter-NIDS.git 
+cd cicflowmeter-NIDS
 sudo python3 setup.py install 
 ```
 
@@ -27,6 +27,17 @@ sudo apt install whois
 ```sh
 sudo apt update
 sudo apt install redis-server
+```
+
+To start Radis Server
+```sh
+ sudo service redis-server start
+```
+
+
+To check status
+```sh
+ sudo service redis-server status
 ```
 
 
