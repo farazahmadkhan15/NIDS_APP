@@ -38,7 +38,6 @@ sudo apt install redis-server
 git clone https://github.com/farazahmadkhan15/NIDS_APP.git 
 cd NIDS_APP 
 python3 -m venv venv 
-sudo su 
 . venv/bin/activate 
  pip install -r requirements.txt 
 ```
