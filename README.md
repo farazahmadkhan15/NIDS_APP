@@ -1,6 +1,24 @@
 # Real Time Network Intrusion Detection System Using Machine Learning
 [Draft Paper](https://drive.google.com/file/d/1nDl880ZMD_wg15fBSch-i1eifrLqw_2e/view?usp=drivesdk)
+
+### Overview 
+This is a research based project on Network Intrusion Detection Systems(NIDS) using machine learning. NIDS is a platform that examine network traffic and identify intrusions. Most of the existing NIDS are signature-based, known intrusion pattern are stored in database and then compared. Since new intrusion can generated form minor changes in existing malware. To cope with this problem, a new solution proposed by using machine learning that can detect even new intrusion.Along with the research, We also develop a real-time NIDS application using python-flask.
+
+### Task Performed
+Major tasks performed during the projects are:
+
+1. Studied literature related to IDS and machine learning.
+2. Studied IDS datasets.
+3. Balancing Data for Multi-class classification SMOTE-TOMEK.
+4. Training and Evaluating Machine Learning Models.
+5. Comparison with previous related work.
+6. Develop prototype integrating trained model in application build with flask.
+7. Capturing packets and generating flows from network using CICFLOWMETER.
+8. Predicting each flows with model in Real-Time
+
+
 ## Setting Up Linux Dependencies:
+
 
 ### CICFLOWMETER:
 
