@@ -77,3 +77,11 @@ sudo su
 . venv/bin/activate 
 flask run
 ```
+
+## Snaps
+
+<img src="home.png" >
+<img src="index.png" >
+<img src="ip.png" >
+
+
