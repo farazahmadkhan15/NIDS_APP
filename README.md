@@ -1,5 +1,5 @@
 # Real Time Network Intrusion Detection System Using Machine Learning
-
+[Draft Paper](https://drive.google.com/file/d/1nDl880ZMD_wg15fBSch-i1eifrLqw_2e/view?usp=drivesdk)
 ## Setting Up Linux Dependencies:
 
 ### CICFLOWMETER:
