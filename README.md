@@ -1,5 +1,4 @@
 # Real Time Network Intrusion Detection System Using Machine Learning
-[Draft Paper](https://drive.google.com/file/d/1nDl880ZMD_wg15fBSch-i1eifrLqw_2e/view?usp=drivesdk)
 
 ### Overview 
 I worked on a research-based project on Network Intrusion Detection Systems(NIDS) using machine learning. NIDS is a platform that examines network traffic and identifies intrusions. Most of the existing NIDS are signature-based, known intrusion patterns are stored in the database and then compared. Since new intrusion can be generated from minor changes in existing malware. To cope with this problem, a new solution was proposed by using machine learning that can detect even new intrusion. Along with the research, We also develop a real-time NIDS application using python-flask.
